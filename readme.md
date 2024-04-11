@@ -1,1 +1,1 @@
-# course-x-phi-2024
+# Forschungsorientierte Einführung in die Experimentelle Philosophie
