@@ -309,7 +309,7 @@
 \textbf{Studienaufbau}\\
 \begin{itemize}
    \item Zwei Varianten einer Vignette \textcolor{gray}{(Entscheidung schadet oder hilft der Umwelt)}
-   \item Teilnehmer*innen sehen immer nur eine Variante der Vignette
+   \item Teilnehmer*innen sehen immer nur eine Variante der Vignette \textcolor{gray}{(\enquote{between subjects})}
    \item Im Anschluss zwei Fragen
    \begin{itemize}
       \item Wie tadelns- oder lobenswert ist die Person für ihre Entscheidung? \textcolor{gray}{(Skala von~0 bis~6)}
@@ -398,6 +398,19 @@ Sie begannen mit dem neuen Programm. Und tatsächlich wurde die Umwelt geschädi
    $\vdots$   & $\vdots$   & $\vdots$       & $\vdots$   \\
    \hline
 \end{tabular}
+
+\bigskip
+\textbf{Skalenniveaus}\\
+\begin{itemize}
+   \item Zuschreibung: ordinal
+   \item Absicht: nominal
+\end{itemize}
+
+\note{
+   \begin{itemize}
+      \item Analyse nominaler Daten über Häufigkeiten
+   \end{itemize}
+}
 \end{frame}
 
 
@@ -459,7 +472,14 @@ $f_{o}(\text{Nein}|\text{Schützen})=29$\hspace{1em}$\leftarrow$\enquote{most su
 % FOLIE 19 %
 %%%%%%%%%%%%
 \begin{frame}{\vspace*{10mm}3\hspace*{1em}Analyse der Replikationsstudie}
-\textbf{Hypothese}\\
+\textbf{Nullhypothese (H$_{0}$)}\\
+\smallskip
+Die Antworten auf die Frage, ob der Vorsitzende die Umwelt absichtlich geschädigt oder geschützt hat, sind unabhängig von der Gruppe.\\
+\smallskip
+$P(\text{Absicht}|\text{Gruppe})=P(\text{Absicht})$\\
+
+\bigskip
+\textbf{Alternativhypothese (H$_{1}$)}\\
 \smallskip
 Die Antworten auf die Frage, ob der Vorsitzende die Umwelt absichtlich geschädigt oder geschützt hat, sind abhängig von der Gruppe.\\
 \smallskip
@@ -586,6 +606,14 @@ Zum Vergleich: \enquote{$\chi^{2}(1,N=78)=27.2$} \textcolor{gray}{(Knobe 2003, S
    \includegraphics[width=0.5\linewidth]{figures/replication_knobe_distribution.pdf}\\
    \textcolor{gray}{$\chi^{2}$-Verteilung ($df=1$)}
 \end{center}
+
+\note{
+   \begin{itemize}
+      \item Wahrscheinlichkeitsdichtefunktion für den Fall, dass Unabhängigkeit vorliegt
+      \item Wahrscheinlichkeit, dass ein gewisser $\chi^{2}$-Wert innerhalb eines Intervalls auf der x-Achse liegt
+      \item Festlegung von Annahme- oder Akzeptanzbereich durch Testniveau $\alpha$
+   \end{itemize}
+}
 \end{frame}
 
 
@@ -602,6 +630,13 @@ $\alpha=0,001$ (kritischer $\chi^{2}$-Wert: 10,83)
 \bigskip
 Zum Vergleich: \enquote{This difference was highly statistically significant [$\cdots$], $p<.001$}\\
 \textcolor{gray}{(Knobe 2003, S. 192)}
+
+\note{
+   \begin{itemize}
+      \item Wie hoch die Wahrscheinlichkeit sein soll, die Nullhypothese zu verwerfen, obwohl sie eigentlich zutrifft
+      \item Gilt die Nullhypothese, nimmt die $\chi^{2}$-Statistik mit einer Wahrscheinlichkeit von $95\%$ einen Wert zwischen 0 und 3,841 an; mit einer Wahrscheinlichkeit von $5\%$ ist der Wert größer als 3,841
+   \end{itemize}
+}
 \end{frame}
 
 
