@@ -448,10 +448,10 @@ $f_{o}(\text{Nein}|\text{Schützen})=d$\\
 \smallskip
 Unter der Annahme, dass die 78 Personen gleich auf beide Gruppen aufgeteilt sind:\\
 \smallskip
-$f_{o}(\text{Ja}|\text{Schaden})=31$\hspace{1em}$\leftarrow$\enquote{most subjects (82\%)} \textcolor{gray}{(Knobe 2003, S. 192)}\\
+$f_{o}(\text{Ja}|\text{Schaden})=32$\hspace{1em}$\leftarrow$\enquote{most subjects (82\%)} \textcolor{gray}{(Knobe 2003, S. 192)}\\
 $f_{o}(\text{Ja}|\text{Schützen})=9$\\
 $f_{o}(\text{Nein}|\text{Schaden})=7$\\
-$f_{o}(\text{Nein}|\text{Schützen})=29$\hspace{1em}$\leftarrow$\enquote{most subjects (77\%)} \textcolor{gray}{(ebd.)}\\
+$f_{o}(\text{Nein}|\text{Schützen})=30$\hspace{1em}$\leftarrow$\enquote{most subjects (77\%)} \textcolor{gray}{(ebd.)}\\
 
 \bigskip
 \begin{tabular}{llccc}
@@ -459,10 +459,10 @@ $f_{o}(\text{Nein}|\text{Schützen})=29$\hspace{1em}$\leftarrow$\enquote{most su
                               &        & \multicolumn{2}{c}{Gruppe}   & Zeilensumme   \\
                               &        & Schaden   & Schützen         &               \\
    \hline
-   \multirow{2}{*}{Absicht}   & Ja     & 31        &  9               & 40            \\
-                              & Nein   &  7        & 29               & 36            \\
+   \multirow{2}{*}{Absicht}   & Ja     & 32        &  9               & 41            \\
+                              & Nein   &  7        & 30               & 37            \\
    \hline
-   Spaltensumme               &        & 38        & 38               & 78            \\
+   Spaltensumme               &        & 39        & 39               & 78            \\
    \hline
 \end{tabular}
 \end{frame}
@@ -517,13 +517,13 @@ $f_{e}(\text{Zelle})=\dfrac{\text{Spaltensumme}\times\text{Zeilensumme}}{n}$\\
 \smallskip
 Unter der Annahme, dass die 78 Personen gleich auf beide Gruppen aufgeteilt sind.\\
 \smallskip
-$f_{e}(\text{Ja}|\text{Schaden})=\dfrac{38\times40}{78}\approx19,49$\\
+$f_{e}(\text{Ja}|\text{Schaden})=\dfrac{39\times41}{78}=20,5$\\
 \smallskip
-$f_{e}(\text{Ja}|\text{Schützen})=\dfrac{38\times40}{78}\approx19,49$\\
+$f_{e}(\text{Ja}|\text{Schützen})=\dfrac{39\times41}{78}=20,5$\\
 \smallskip
-$f_{e}(\text{Nein}|\text{Schaden})=\dfrac{38\times36}{78}\approx17,54$\\
+$f_{e}(\text{Nein}|\text{Schaden})=\dfrac{39\times37}{78}=18,5$\\
 \smallskip
-$f_{e}(\text{Nein}|\text{Schützen})=\dfrac{38\times36}{78}\approx17,54$\\
+$f_{e}(\text{Nein}|\text{Schützen})=\dfrac{39\times37}{78}=18,5$\\
 
 \bigskip
 \begin{tabular}{llcc}
@@ -531,8 +531,8 @@ $f_{e}(\text{Nein}|\text{Schützen})=\dfrac{38\times36}{78}\approx17,54$\\
                               &        & \multicolumn{2}{c}{Gruppe}   \\
                               &        & Schaden   & Schützen         \\
    \hline
-   \multirow{2}{*}{Absicht}   & Ja     & 19,49     & 19,49            \\
-                              & Nein   & 17,54     & 17,54            \\
+   \multirow{2}{*}{Absicht}   & Ja     & 20,5      & 20,5             \\
+                              & Nein   & 18,5      & 18,5             \\
    \hline
 \end{tabular}
 \end{frame}
@@ -564,11 +564,11 @@ $f_{e}(\text{Nein}|\text{Schützen})=\dfrac{38\times36}{78}\approx17,54$\\
 \smallskip
 \begin{tabular}{llcc}
    \arrayrulecolor{blue2}\hline
-                              &        & \multicolumn{2}{c}{Gruppe}              \\
-                              &        & Schaden            & Schützen           \\
+                              &        & \multicolumn{2}{c}{Gruppe}          \\
+                              &        & Schaden          & Schützen         \\
    \hline
-   \multirow{2}{*}{Absicht}   & Ja     & $31-19,49=11,51$   & $9-19,49=-10,49$   \\
-                              & Nein   & $7-17,54=-10,54$   & $29-17,54=11,46$   \\
+   \multirow{2}{*}{Absicht}   & Ja     & $31-20,5=10,5$   & $9-20,5=-11,5$   \\
+                              & Nein   & $7-18,5=-11,5$   & $29-18,5=10,5$   \\
    \hline
 \end{tabular}
 \end{frame}
@@ -590,7 +590,7 @@ $\chi^{2}=\sum_{z=1}^{4}\dfrac{(f_{o}(z)-f_{e}(z))^{2}}{f_{e}(z)}$
 \begin{frame}{\vspace*{10mm}3\hspace*{1em}Analyse der Replikationsstudie}
 \textbf{Berechnung der $\chi^{2}$-Statistik für Knobe (2003)}\\
 \smallskip
-$\chi^{2}=\dfrac{(31-19,49)^{2}}{19,49}+\dfrac{(9-19,49)^{2}}{19,49}+\dfrac{(7-17,54)^{2}}{17,54}+\dfrac{(29-17,54)^{2}}{17,54}\approx26,27$
+$\chi^{2}=\dfrac{(31-20,5)^{2}}{20,5}+\dfrac{(9-20,5)^{2}}{20,5}+\dfrac{(7-18,5)^{2}}{18,5}+\dfrac{(29-18,5)^{2}}{18,5}\approx24,94$
 
 \bigskip
 Zum Vergleich: \enquote{$\chi^{2}(1,N=78)=27.2$} \textcolor{gray}{(Knobe 2003, S. 192)}
