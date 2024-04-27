@@ -34,3 +34,6 @@
 # Beamer auxiliary files
 *.nav
 *.snm
+
+# R
+*.Rhistory
