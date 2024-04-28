@@ -14,11 +14,13 @@
 \usepackage{hyperref}
    \urlstyle{same}
 \usepackage{lipsum}
+\usepackage{listings}
 \usepackage{lmodern}
 \usepackage{multicol}
 \usepackage{multirow}
 \usepackage{smartdiagram}
 \usepackage{tikz}
+\usepackage{xcolor}
 
 \definecolor{uolblue}{RGB}{0,62,107}
 
@@ -38,6 +40,24 @@
 \definecolor{orange4}{RGB}{253,195,0}
 
 \definecolor{gr}{RGB}{191,191,191}
+\definecolor{grcode}{RGB}{190,190,190}
+
+\lstdefinestyle{mystyle}{
+   backgroundcolor=\color{grcode},
+   commentstyle=\color{blue1},
+   numberstyle=\tiny\color{blue1},
+   basicstyle=\ttfamily\footnotesize,
+   breakatwhitespace=false,
+   breaklines=true,
+   captionpos=b,
+   keepspaces=true,
+   numbers=left,
+   numbersep=5pt,
+   showspaces=false,
+   showstringspaces=false,
+   showtabs=false,
+   tabsize=2
+}
 
 \setbeameroption{hide notes}
 % \setbeameroption{show only notes}
@@ -681,8 +701,68 @@ Zum Vergleich: \enquote{This difference was highly statistically significant [$\
 \end{frame}
 
 
+%%%%%%%%%%%%
+% FOLIE 31 %
+%%%%%%%%%%%%
+\begin{frame}{\vspace*{10mm}4\hspace*{1em}Ergebnisse der Replikationsstudie}
+\textbf{Auswertung mit R}\\
+\smallskip
+\lstset{style=mystyle}
+\lstinputlisting[language=R]{code/replication_knobe_part_1.R}
+\end{frame}
+
+
+%%%%%%%%%%%%
+% FOLIE 32 %
+%%%%%%%%%%%%
+\begin{frame}{\vspace*{10mm}4\hspace*{1em}Ergebnisse der Replikationsstudie}
+\textbf{Auswertung mit R}\\
+\smallskip
+\lstset{style=mystyle}
+\lstinputlisting[language=R]{code/replication_knobe_part_2.R}
+\end{frame}
+
+
+%%%%%%%%%%%%
+% FOLIE 33 %
+%%%%%%%%%%%%
+\begin{frame}{\vspace*{10mm}4\hspace*{1em}Ergebnisse der Replikationsstudie}
+\textbf{Auswertung mit R}\\
+\smallskip
+\lstset{style=mystyle}
+\lstinputlisting[language=R]{code/replication_knobe_part_3.R}
+\end{frame}
+
+
+%%%%%%%%%%%%
+% FOLIE 34 %
+%%%%%%%%%%%%
+\begin{frame}{\vspace*{10mm}4\hspace*{1em}Ergebnisse der Replikationsstudie}
+\textbf{Auswertung mit R}\\
+\smallskip
+\lstset{style=mystyle}
+\lstinputlisting[language=R]{code/replication_knobe_part_4.R}
+\end{frame}
+
+
+%%%%%%%%%%%%
+% FOLIE 35 %
+%%%%%%%%%%%%
+\begin{frame}{\vspace*{10mm}4\hspace*{1em}Ergebnisse der Replikationsstudie}
+\textbf{Ergebnisse Gruppe 1}\\
+\begin{multicols}{2}
+   \begin{center}
+      \frame{\includegraphics[width=0.85\linewidth]{figures/replication_knobe_fig_1.png}}\\
+      \frame{\includegraphics[width=0.85\linewidth]{figures/replication_knobe_fig_2.png}}\\
+   \end{center}
+\end{multicols}
+Antwort: $\chi^2(df=1,n=54)=27,865$, $p<0,001$; $w=0,756$\\
+Zuschreibung: Schaden $M=4,90$, $SD=1,26$; Helfen $M=2,32$, $SD=1,63$; $t=6,43$, $p<0,001$; $d=1,77$
+\end{frame}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-% FOLIE 31 – BIBLIOGRAFIE %
+% FOLIE 36 – BIBLIOGRAFIE %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{\vspace*{10mm}Bibliografie}
 \vspace*{-5mm}
