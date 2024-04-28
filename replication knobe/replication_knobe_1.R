@@ -32,6 +32,8 @@ ggplot(df,
 ggsave("replication_knobe_fig_1.png")
 
 # calculate summary statistic
+library(magrittr)
+library(rstatix)
 df %>%
   group_by(Condition) %>%
   get_summary_stats(Ascription, type = "mean_sd")
