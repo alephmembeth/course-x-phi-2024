@@ -17,7 +17,7 @@ chisq.test(df$Condition, df$Answer)
 # calculate Fisher's exact test
 fisher.test(df$Condition, df$Answer)
 
-# calculate Cohen's W
+# calculate Cohen's w
 library(rcompanion)
 cohenW(df$Condition, df$Answer)
 
@@ -28,5 +28,30 @@ ggplot(df,
            fill = Answer)) +
   geom_bar(position="dodge") +
   ylab("Count") +
-  ggtitle("Replication of Knobe (2003) by Group 1")
+  ggtitle("Replication of Study 1 from Knobe (2003) by Student Group 1")
 ggsave("replication_knobe_fig_1.png")
+
+# calculate summary statistic
+df %>%
+  group_by(Condition) %>%
+  get_summary_stats(Ascription, type = "mean_sd")
+
+# calculate Weltch's t-test
+stat.test <- df %>% 
+  t_test(Ascription ~ Condition) %>%
+  add_significance()
+stat.test
+
+# calculate Cohen's d
+df %>%
+  cohens_d(Ascription ~ Condition, var.equal = FALSE)
+
+# create boxplot
+ggplot(df,
+       aes(x=Condition,
+           y=Ascription,
+           fill=Condition)) +
+  theme(legend.position = "none") +
+  geom_boxplot() +
+  ggtitle("Replication of Study 1 from Knobe (2003) by Student Group 1")
+ggsave("replication_knobe_fig_2.png")
