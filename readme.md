@@ -7,4 +7,4 @@ This is a repository for the course “Forschungsorientierte Einführung in die 
 - Materials, data, and results of three student projects are available in `/civil disobedience`, `/autonomous systems`, and `/moral obligation`.
 
 [^1]: Knobe, Joshua (2003): “Intentional Action and Side Effects in Ordinary Language”, _Analysis_ 63 (3), 190–194.
-[^2]: For a blog entry on this, see [https://xphi.net/2024/04/29/teaching-experimental-philosophy-to-beginners-part-1/](https://xphi.net/2024/04/29/teaching-experimental-philosophy-to-beginners-part-1/)
+[^2]: For a blog entry on this, see [https://xphi.net/2024/04/29/teaching-experimental-philosophy-to-beginners-part-1/](https://xphi.net/2024/04/29/teaching-experimental-philosophy-to-beginners-part-1/).
