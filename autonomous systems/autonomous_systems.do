@@ -42,14 +42,14 @@ destring v7f1, replace
 destring v8f1, replace
 
 ren randnumber treatment
-label define treatment_lb 1 "Autonom (+) / Fr. (–) / Grün" ///
-                          2 "Autonom (–) / Fr. (+) / Grün" ///
-                          3 "Autonom (–) / Fr. (+) / Rot" ///
-                          4 "Autonom (+) / Fr. (–) / Rot" ///
-                          5 "Mensch (+) / Fr. (–) / Grün" ///
-                          6 "Mensch (–) / Fr. (+) / Grün" ///
-                          7 "Mensch (–) / Fr. (+) / Rot" ///
-                          8 "Mensch (+) / Fr. (–) / Rot", replace
+label define treatment_lb 1 "Auton. / Ped. ✝ / Legally" ///
+                          2 "Auton. / Driver ✝ / Legally" ///
+                          3 "Auton. / Driver ✝ / Illegally" ///
+                          4 "Auton. / Ped. ✝ / Illegally" ///
+                          5 "Human / Ped. ✝ / Legally" ///
+                          6 "Human / Driver ✝ / Legally" ///
+                          7 "Human / Driver ✝ / Illegally" ///
+                          8 "Human / Ped. ✝ / Illegally", replace
    label values treatment treatment_lb
 
 
@@ -181,9 +181,9 @@ gen gender = .
    replace gender = 0 if gender_num_1 == 1
    replace gender = 1 if gender_num_2 == 1
    replace gender = 2 if gender_num_3 == 1
-label define gender_lb 0 "Weiblich" ///
-                       1 "Divers" ///
-                       2 "Männlich", replace
+label define gender_lb 0 "female" ///
+                       1 "non-binary" ///
+                       2 "male", replace
    label values gender gender_lb
 
 tab gender
@@ -203,13 +203,13 @@ gen education = .
    replace education = 5 if edu_num_5 == 1
    replace education = 6 if edu_num_6 == 1
    replace education = 7 if edu_num_7 == 1
-label define education_lb 1 "ohne allgemeinen Schulabschluss" ///
-                          2 "Haupt- oder Realschulabschluss" ///
-                          3 "Fachhochschul- oder Hochschulreife" ///
-                          4 "Hochschulabschluss" ///
-                          5 "Promotion" ///
-                          6 "Habilation" ///
-                          7 "im Studium", replace
+label define education_lb 1 "no school-leaving qualifications" ///
+                          2 "lower secondary school leaving certificate" ///
+                          3 "technical college or university entrance qualification" ///
+                          4 "bachelor's or master's degree" ///
+                          5 "doctorate" ///
+                          6 "habilitation" ///
+                          7 "currently studying", replace
    label values education education_lb
 
 tab education
@@ -217,14 +217,14 @@ tab education
 
 /* generate graphs */
 histogram answer, percent discrete by(treatment, note("") graphregion(fcolor(white))) ///
-   xtitle("Moralische Schuld?") ///
-   xlabel(0 "Nein" 1 "Ja") ///
-   ytitle("Prozent") ///
+   xtitle("Is the self-driving car [the person driving] morally responsible?") ///
+   xlabel(0 "No" 1 "Yes") ///
+   ytitle("Percent") ///
    yscale(range(0 100))
 graph export autonomous_systems_all.pdf, replace
 
 
-/* Autonom vs. Mensch */
+/* self-driving car vs. human-driven car */
 preserve
    gen treatment_class = .
       replace treatment_class = 0 if treatment == 1
@@ -236,13 +236,13 @@ preserve
       replace treatment_class = 1 if treatment == 6
       replace treatment_class = 1 if treatment == 7
       replace treatment_class = 1 if treatment == 8
-   label define treatment_class_lb 0 "Autonom" 1 "Mensch"
+   label define treatment_class_lb 0 "Self-Driving Car" 1 "Human-Driven Car"
       label values treatment_class treatment_class_lb
 
    histogram answer, percent discrete by(treatment_class, note("") graphregion(fcolor(white))) ///
-      xtitle("Moralische Schuld?") ///
-      xlabel(0 "Nein" 1 "Ja") ///
-      ytitle("Prozent") ///
+      xtitle("Is the self-driving car [the person driving] morally responsible?") ///
+      xlabel(0 "No" 1 "Yes") ///
+      ytitle("Percent") ///
       yscale(range(0 100))
    graph export autonomous_systems_autonomous_human.pdf, replace
 
@@ -252,7 +252,7 @@ preserve
 restore
 
 
-/* Rot vs. Grün */
+/* illegally crossing vs. legally crossing */
 preserve
    gen treatment_class = .
       replace treatment_class = 0 if treatment == 3
@@ -264,15 +264,15 @@ preserve
       replace treatment_class = 1 if treatment == 2
       replace treatment_class = 1 if treatment == 5
       replace treatment_class = 1 if treatment == 6
-   label define treatment_class_lb 0 "Rot" 1 "Grün"
+   label define treatment_class_lb 0 "Illegally Crossing" 1 "Legally Crossing"
       label values treatment_class treatment_class_lb
 
    histogram answer, percent discrete by(treatment_class, note("") graphregion(fcolor(white))) ///
-      xtitle("Moralische Schuld?") ///
-      xlabel(0 "Nein" 1 "Ja") ///
-      ytitle("Prozent") ///
+      xtitle("Is the self-driving car [the person driving] morally responsible?") ///
+      xlabel(0 "No" 1 "Yes") ///
+      ytitle("Percent") ///
       yscale(range(0 100))
-   graph export autonomous_systems_autonomous_human.pdf, replace
+   graph export autonomous_systems_illegally_legally.pdf, replace
 
    tab answer treatment_class, cell chi2 V
 
@@ -280,7 +280,7 @@ preserve
 restore
 
 
-/* Autonom oder Mensch (+) vs. Fr. (+) */
+/* pedestrian dies vs. driver dies */
 preserve
    gen treatment_class = .
       replace treatment_class = 0 if treatment == 1
@@ -292,15 +292,15 @@ preserve
       replace treatment_class = 1 if treatment == 3
       replace treatment_class = 1 if treatment == 6
       replace treatment_class = 1 if treatment == 7
-   label define treatment_class_lb 0 "Autonom oder Mensch (+)" 1 "Frau (+)"
+   label define treatment_class_lb 0 "Pedestrian Dies" 1 "Driver Dies"
       label values treatment_class treatment_class_lb
 
    histogram answer, percent discrete by(treatment_class, note("") graphregion(fcolor(white))) ///
-      xtitle("Moralische Schuld?") ///
-      xlabel(0 "Nein" 1 "Ja") ///
-      ytitle("Prozent") ///
+      xtitle("Is the self-driving car [the person driving] morally responsible?") ///
+      xlabel(0 "No" 1 "Yes") ///
+      ytitle("Percent") ///
       yscale(range(0 100))
-   graph export autonomous_systems_autonomous_human.pdf, replace
+   graph export autonomous_systems_driver_pedestrian.pdf, replace
 
    tab answer treatment_class, cell chi2 V
 
@@ -313,8 +313,8 @@ preserve
    keep if treatment == 1 | treatment == 2 | treatment == 3 | treatment == 4
 
    histogram scale_auton, percent discrete by(treatment, note("") graphregion(fcolor(white))) ///
-      xtitle("Skala Autonom") ///
-      ytitle("Prozent") ///
+      xtitle("Scale Autonomous Car") ///
+      ytitle("Percent") ///
       yscale(range(0 100))
    graph export autonomous_systems_scale_auton.pdf, replace
 restore
@@ -323,8 +323,8 @@ preserve
    keep if treatment == 5 | treatment == 6 | treatment == 7 | treatment == 8
 
    histogram scale_human, percent discrete by(treatment, note("") graphregion(fcolor(white))) ///
-      xtitle("Skala Mensch") ///
-      ytitle("Prozent") ///
+      xtitle("Scale Human Driver") ///
+      ytitle("Percent") ///
       yscale(range(0 100))
    graph export autonomous_systems_scale_human.pdf, replace
 restore
