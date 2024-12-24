@@ -72,7 +72,7 @@ gen answer = .
    replace answer = 1 if v6f1 == 1
    replace answer = 1 if v7f1 == 1
    replace answer = 1 if v8f1 == 1
-label define answer_lb 0 "Nein" 1 "Ja"
+label define answer_lb 0 "No" 1 "Yes"
    label values answer answer_lb
 
 gen scale_auton = "."
