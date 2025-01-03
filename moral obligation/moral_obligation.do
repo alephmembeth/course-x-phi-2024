@@ -1,3 +1,5 @@
+cd "/Users/amb/Desktop/GitHub/course-x-phi-2024/moral obligation"
+
 /* header */
 version 14.2
 
@@ -618,7 +620,8 @@ preserve
       xtitle("Would you donate?") ///
       xlabel(0 "No" 1 "Yes") ///
       ytitle("Percent") ///
-      yscale(range(0 100))
+      yscale(range(0 100)),
+   graph save tmp_neighbor_state, replace
    graph export moral_obligation_would_neighbor_state.pdf, replace
 
    histogram answer_should, percent discrete by(treatment_class, note("") graphregion(fcolor(white))) ///
@@ -653,7 +656,8 @@ preserve
       xtitle("Would you donate?") ///
       xlabel(0 "No" 1 "Yes") ///
       ytitle("Percent") ///
-      yscale(range(0 100))
+      yscale(range(0 100)),
+   graph save tmp_state_country, replace
    graph export moral_obligation_would_state_country.pdf, replace
 
    histogram answer_should, percent discrete by(treatment_class, note("") graphregion(fcolor(white))) ///
@@ -667,6 +671,11 @@ preserve
 
    tab answer_should treatment_class, cell chi2 V
 restore
+
+/* neighborhood vs. federal state and federal state vs. far-away country combined */
+
+graph combine "tmp_neighbor_state" "tmp_state_country", graphregion(fcolor(white))
+graph export moral_obligation_would_neighbor_state_country.pdf, replace
 
 
 /* scales */
