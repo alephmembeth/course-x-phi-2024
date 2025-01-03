@@ -238,18 +238,18 @@ destring freinge2, replace
 destring freinge3, replace
 
 ren randnumber treatment
-label define treatment_lb 1 "Be / Na / Ni" ///
-                          2 "Be / Bu / Ni" ///
-                          3 "Be / In / Ni" ///
-                          4 "Be / Na / Ge" ///
-                          5 "Be / Bu / Ge" ///
-                          6 "Be / In / Ge" ///
-                          7 "Fre / Na / Ni" ///
-                          8 "Fre / Bu / Ni" ///
-                          9 "Fre / In / Ni" ///
-                          10 "Fre / Na / Ge" ///
-                          11 "Fre / Bu / Ge" ///
-                          12 "Fre / In / Ge", replace
+label define treatment_lb 1 "Known / Neighbor / Kidney" ///
+                          2 "Known / State / Kidney" ///
+                          3 "Known / Country / Kidney" ///
+                          4 "Known / Neighbor / Money" ///
+                          5 "Known / State / Money" ///
+                          6 "Known / Country / Money" ///
+                          7 "Unknown / Neighbor / Kidney" ///
+                          8 "Unknown / State / Kidney" ///
+                          9 "Unknown / Country / Kidney" ///
+                          10 "Unknown / Neighbor / Money" ///
+                          11 "Unknown / State / Money" ///
+                          12 "Unknown / Country / Money", replace
    label values treatment treatment_lb
 
 
@@ -290,7 +290,7 @@ gen answer_do = .
 
    replace answer_do = 0 if freinge1 == 0
    replace answer_do = 1 if freinge1 == 1
-label define answer_do_lb 0 "Nein" 1 "Ja"
+label define answer_do_lb 0 "No" 1 "Yes"
    label values answer_do answer_do_lb
 
 gen answer_should = .
@@ -329,7 +329,7 @@ gen answer_should = .
 
    replace answer_should = 0 if freinge3 == 0
    replace answer_should = 1 if freinge3 == 1
-label define answer_should_lb 0 "Nein" 1 "Ja"
+label define answer_should_lb 0 "No" 1 "Yes"
    label values answer_should answer_should_lb
 
 gen answer_scale = .
@@ -468,10 +468,10 @@ gen gender = .
    replace gender = 1 if gender_num_2 == 1
    replace gender = 2 if gender_num_3 == 1
    replace gender = 3 if gender_num_4 == 1
-label define gender_lb 0 "Weiblich" ///
-                       1 "Divers" ///
-                       2 "Männlich" ///
-                       3 "Keine Angabe", replace
+label define gender_lb 0 "female" ///
+                       1 "non-binary" ///
+                       2 "male" ///
+                       3 "no answer", replace
    label values gender gender_lb
 
 tab gender
@@ -491,15 +491,15 @@ gen education = .
    replace education = 7 if edu_num_7  == 1
    replace education = 8 if edu_num_8  == 1
    replace education = 9 if edu_num_10 == 1
-label define education_lb 1 "ohne allgemeinen Schulabschluss" ///
-                          2 "Haupt- oder Realschulabschluss" ///
-                          3 "Fachhochschul- oder Hochschulreife" ///
-                          4 "Hochschulabschluss" ///
-                          5 "Promotion" ///
-                          6 "Habilation" ///
-                          7 "im Studium" ///
-                          8 "In der Ausbildung" ///
-                          9 "Abgeschlossene Ausbildung", replace
+label define education_lb 1 "no school-leaving qualifications" ///
+                          2 "lower secondary school leaving certificate" ///
+                          3 "technical college or university entrance qualification" ///
+                          4 "bachelor's or master's degree" ///
+                          5 "doctorate" ///
+                          6 "habilitation" ///
+                          7 "currently studying" ///
+                          8 "currently in vocational training" ///
+                          9 "completed vocational training", replace
    label values education education_lb
 
 tab education
@@ -507,21 +507,21 @@ tab education
 
 /* generate graphs */
 histogram answer_do, percent discrete by(treatment, note("") graphregion(fcolor(white))) ///
-   xtitle("Würden Sie?") ///
-   xlabel(0 "Nein" 1 "Ja") ///
-   ytitle("Prozent") ///
+   xtitle("Would you donate?") ///
+   xlabel(0 "No" 1 "Yes") ///
+   ytitle("Percent") ///
    yscale(range(0 100))
-graph export moral_obligation_do_all.pdf, replace
+graph export moral_obligation_would_all.pdf, replace
 
 histogram answer_should, percent discrete by(treatment, note("") graphregion(fcolor(white))) ///
-   xtitle("Sollte jemand?") ///
-   xlabel(0 "Nein" 1 "Ja") ///
-   ytitle("Prozent") ///
+   xtitle("Sould one donate?") ///
+   xlabel(0 "No" 1 "Yes") ///
+   ytitle("Percent") ///
    yscale(range(0 100))
 graph export moral_obligation_should_all.pdf, replace
 
 
-/* Be vs. Fre */
+/* known vs. unknown */
 preserve
    gen treatment_class = .
       replace treatment_class = 0 if treatment == 1
@@ -537,22 +537,22 @@ preserve
       replace treatment_class = 1 if treatment == 10
       replace treatment_class = 1 if treatment == 11
       replace treatment_class = 1 if treatment == 12
-   label define treatment_class_lb 0 "Be" 1 "Fre"
+   label define treatment_class_lb 0 "Known" 1 "Unknown"
       label values treatment_class treatment_class_lb
 
    histogram answer_do, percent discrete by(treatment_class, note("") graphregion(fcolor(white))) ///
-      xtitle("Würden Sie?") ///
-      xlabel(0 "Nein" 1 "Ja") ///
-      ytitle("Prozent") ///
+      xtitle("Would you donate?") ///
+      xlabel(0 "No" 1 "Yes") ///
+      ytitle("Percent") ///
       yscale(range(0 100))
-   graph export moral_obligation_do_be_fre.pdf, replace
+   graph export moral_obligation_would_known_unknown.pdf, replace
 
    histogram answer_should, percent discrete by(treatment_class, note("") graphregion(fcolor(white))) ///
-      xtitle("Sollte jemand?") ///
+      xtitle("Sould one donate?") ///
       xlabel(0 "No" 1 "Yes") ///
-      ytitle("Prozent") ///
+      ytitle("Percent") ///
       yscale(range(0 100))
-   graph export moral_obligation_should_be_fre.pdf, replace
+   graph export moral_obligation_should_known_unknown.pdf, replace
 
    tab answer_do treatment_class, cell chi2 V
 
@@ -560,7 +560,7 @@ preserve
 restore
 
 
-/* Ni vs. Ge */
+/* kidney vs. money */
 preserve
    gen treatment_class = .
       replace treatment_class = 0 if treatment == 1
@@ -576,22 +576,22 @@ preserve
       replace treatment_class = 1 if treatment == 10
       replace treatment_class = 1 if treatment == 11
       replace treatment_class = 1 if treatment == 12
-   label define treatment_class_lb 0 "Ni" 1 "Ge"
+   label define treatment_class_lb 0 "Kidney" 1 "Money"
       label values treatment_class treatment_class_lb
 
    histogram answer_do, percent discrete by(treatment_class, note("") graphregion(fcolor(white))) ///
-      xtitle("Würden Sie?") ///
-      xlabel(0 "Nein" 1 "Ja") ///
-      ytitle("Prozent") ///
+      xtitle("Would you donate?") ///
+      xlabel(0 "No" 1 "Yes") ///
+      ytitle("Percent") ///
       yscale(range(0 100))
-   graph export moral_obligation_do_ni_ge.pdf, replace
+   graph export moral_obligation_would_kidney_money.pdf, replace
 
    histogram answer_should, percent discrete by(treatment_class, note("") graphregion(fcolor(white))) ///
-      xtitle("Sollte jemand?") ///
-      xlabel(0 "Nein" 1 "Ja") ///
-      ytitle("Prozent") ///
+      xtitle("Sould one donate?") ///
+      xlabel(0 "No" 1 "Yes") ///
+      ytitle("Percent") ///
       yscale(range(0 100))
-   graph export moral_obligation_should_ni_ge.pdf, replace
+   graph export moral_obligation_should_kidney_money.pdf, replace
 
    tab answer_do treatment_class, cell chi2 V
 
@@ -599,7 +599,7 @@ preserve
 restore
 
 
-/* Na vs. Bu */
+/* neighborhood vs. federal state */
 preserve
    gen treatment_class = .
       replace treatment_class = 0 if treatment == 1
@@ -611,22 +611,22 @@ preserve
       replace treatment_class = 1 if treatment == 5
       replace treatment_class = 1 if treatment == 8
       replace treatment_class = 1 if treatment == 11
-   label define treatment_class_lb 0 "Na" 1 "Bu"
+   label define treatment_class_lb 0 "Neighborhood" 1 "Federal State"
       label values treatment_class treatment_class_lb
 
    histogram answer_do, percent discrete by(treatment_class, note("") graphregion(fcolor(white))) ///
-      xtitle("Würden Sie?") ///
-      xlabel(0 "Nein" 1 "Ja") ///
-      ytitle("Prozent") ///
+      xtitle("Would you donate?") ///
+      xlabel(0 "No" 1 "Yes") ///
+      ytitle("Percent") ///
       yscale(range(0 100))
-   graph export moral_obligation_do_na_bu.pdf, replace
+   graph export moral_obligation_would_neighbor_state.pdf, replace
 
    histogram answer_should, percent discrete by(treatment_class, note("") graphregion(fcolor(white))) ///
-      xtitle("Sollte jemand?") ///
-      xlabel(0 "Nein" 1 "Ja") ///
-      ytitle("Prozent") ///
+      xtitle("Sould one donate?") ///
+      xlabel(0 "No" 1 "Yes") ///
+      ytitle("Percent") ///
       yscale(range(0 100))
-   graph export moral_obligation_should_na_bu.pdf, replace
+   graph export moral_obligation_should_neighbor_state.pdf, replace
 
    tab answer_do treatment_class, cell chi2 V
 
@@ -634,7 +634,7 @@ preserve
 restore
 
 
-/* Bu vs. In */
+/* federal state vs. far-away country */
 preserve
    gen treatment_class = .
       replace treatment_class = 0 if treatment == 2
@@ -646,22 +646,22 @@ preserve
       replace treatment_class = 1 if treatment == 6
       replace treatment_class = 1 if treatment == 9
       replace treatment_class = 1 if treatment == 12
-   label define treatment_class_lb 0 "Bu" 1 "In"
+   label define treatment_class_lb 0 "Federal State" 1 "Far-Away Country"
       label values treatment_class treatment_class_lb
 
    histogram answer_do, percent discrete by(treatment_class, note("") graphregion(fcolor(white))) ///
-      xtitle("Würden Sie?") ///
-      xlabel(0 "Nein" 1 "Ja") ///
-      ytitle("Prozent") ///
+      xtitle("Would you donate?") ///
+      xlabel(0 "No" 1 "Yes") ///
+      ytitle("Percent") ///
       yscale(range(0 100))
-   graph export moral_obligation_do_bu_in.pdf, replace
+   graph export moral_obligation_would_state_country.pdf, replace
 
    histogram answer_should, percent discrete by(treatment_class, note("") graphregion(fcolor(white))) ///
-      xtitle("Sollte jemand?") ///
-      xlabel(0 "Nein" 1 "Ja") ///
-      ytitle("Prozent") ///
+      xtitle("Sould one donate?") ///
+      xlabel(0 "No" 1 "Yes") ///
+      ytitle("Percent") ///
       yscale(range(0 100))
-   graph export moral_obligation_should_bu_in.pdf, replace
+   graph export moral_obligation_should_state_country.pdf, replace
 
    tab answer_do treatment_class, cell chi2 V
 
@@ -671,8 +671,8 @@ restore
 
 /* scales */
 histogram answer_scale, percent discrete by(treatment, note("") graphregion(fcolor(white))) ///
-   xtitle("Skala") ///
-   ytitle("Prozent") ///
+   xtitle("Scale") ///
+   ytitle("Percent") ///
    yscale(range(0 100))
 graph export moral_obligation_scale_all.pdf, replace
 
